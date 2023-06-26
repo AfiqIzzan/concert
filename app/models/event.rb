@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
     belongs_to :organizer
-    has_one_attached :poster, dependent: :destroy # Active Storage
+    has_one_attached :image, dependent: :destroy # Active Storage
     has_many :tickets, dependent: :destroy, inverse_of: :event
     accepts_nested_attributes_for :tickets, reject_if: :all_blank, allow_destroy: true
 
