@@ -1,36 +1,36 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <%= link_to "Event", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
+      <ul class="navbar-nav mr-auto mb-3 mb-lg-0">
+        <% if organizer_signed_in? %>
+          <li><%= link_to "New Events", new_event_path, class: "nav-item" %></li>
+          <li><%= link_to "My Events", events_path, class: "nav-item" %>
+        <% end %>  
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <ul class="navbar-nav ms-auto mb-3 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="user-name"><%= current_user.username %></span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item" %></li>
+              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete}, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% elsif organizer_signed_in? %>
+          <li><%= link_to 'Log out', destroy_organizer_session_path, method: :delete, data: { turbo_method: :delete}, class: "nav-item" %></li>
+        <% else %>
+          <li><%= link_to 'Login as organizer', new_organizer_session_path, class: "nav-item" %></li>
+          <li><%= link_to 'Login', new_user_session_path, class:"nav-item" %></li>
+          <li><%= link_to 'Signup', new_user_registration_path, class: "nav-item" %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </nav>

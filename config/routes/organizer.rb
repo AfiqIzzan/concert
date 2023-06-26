@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    devise_for :organizers, :controllers => {:registrations => "organizers/registrations" }
+    devise_for :organizers, :controllers => {:registrations => "organizers/registrations", sessions: "organizers/sessions" }
 
     devise_scope :organizer do
         authenticated :organizer do

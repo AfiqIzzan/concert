@@ -3,38 +3,33 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    .field.form-group
+    .form-control
       = f.file_field :image, class: "form-control"
-    .field.form-group
-      = f.input :name, placeholder: "Event title", label: 'Event Name', input_html: {data: {calculate_target: "name"}}
-      button type="button" data-action="click->calculate#greet" Greet
-      h1 data-calculate-target='output'
-    .field.form-group
-    = f.input :description
-    .field.form-group 
-    = f.input :event_date, as: :date, html5: true
-    .row 
-      .col 
-        = f.input :category, as: :select, collection: Event.categories.keys, :include_blank => " ", input_html: {data: {select_target: "category", action: "change->select#field"}}
-      .col class="subcategory" 
-        | Subcategory
-        = f.input :subcategory, as: :select, collection: Event.subcategories.keys, input_html: {data: {select_target: "sport"}, style: "margin-top:5px"}, label: false 
-        / = f.input :subcategory, as: :select, collection: Event.subcategories.keys, input_html: {data: {select_target: "education"}, hidden: "", style: "margin-top:5px" }, label:false 
-    = f.input :location
-    =f.input :organizer_id , as: :hidden, input_html: {value: current_organizer.id}
+      = f.input :name, label: 'Event Name', input_html: {data: {calculate_target: "name"}}
+      = f.input :description
+      = f.input :event_date, as: :date, html5: true
+      .row 
+        .col 
+          = f.input :category, as: :select, collection: Event.categories.keys, :include_blank => " ", input_html: {data: {select_target: "category", action: "change->select#field"}}
+        .col class="subcategory" 
+          | Subcategory
+          = f.input :subcategory, as: :select, collection: Event.subcategories.keys, input_html: {data: {select_target: "sport"}, style: "margin-top:5px"}, label: false 
+          / = f.input :subcategory, as: :select, collection: Event.subcategories.keys, input_html: {data: {select_target: "education"}, hidden: "", style: "margin-top:5px" }, label:false 
+      = f.input :location
+      =f.input :organizer_id , as: :hidden, input_html: {value: current_organizer.id}
 
-    <h4>Tickets</h4>
+      <h4>Tickets</h4>
 
-    template data-nested-form-target="template"
-      = f.fields_for :tickets, Ticket.new, child_index: 'NEW_RECORD' do |ticket_fields| 
-        = render "events/event_ticket_form", f: ticket_fields
-    template
-      = f.fields_for :tickets do |ticket_fields| 
-        = render "events/event_ticket_form", f: ticket_fields 
+      template data-nested-form-target="template"
+        = f.fields_for :tickets, Ticket.new, child_index: 'NEW_RECORD' do |ticket_fields| 
+          = render "events/event_ticket_form", f: ticket_fields
+      template
+        = f.fields_for :tickets do |ticket_fields| 
+          = render "events/event_ticket_form", f: ticket_fields 
 
-    div data-nested-form-target="target"
-    <p></p>
-    button type="button" data-action="nested-form#add" class="btn btn-outline-primary btn-sm" Add more ticket type
+      div data-nested-form-target="target"
+      <p></p>
+      button type="button" data-action="nested-form#add" class="btn btn-outline-primary btn-sm" Add more ticket type
 
     <br><br>
 

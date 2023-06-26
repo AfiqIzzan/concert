@@ -1,0 +1,21 @@
+.navbar, .navbar-brand{
+    background-color: #0E2954;
+    color: white;
+}
+
+#user-name{
+    color: white;
+}
+
+a.nav-item, a.dropdown-item{
+    color: white;
+    text-decoration: none;
+}
+
+ul.dropdown-menu.show{
+    background-color: #0E2954;
+}
+
+li{
+    padding-right: 10px;
+}
