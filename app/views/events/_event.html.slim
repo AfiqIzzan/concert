@@ -1,31 +1,57 @@
 div id="#{dom_id event}"
 
-  .h2 Event Details 
-  .row 
-    .col 
-      = image_tag event.image
-    .col 
-      .container 
-        .h2 
-          = event.name 
-        .p 
-          = event.description 
-        .p.bi.bi-calendar-event 
-          = event.event_date.strftime("%d %B %Y")
-        .p  
-          = event.location
 
-  table class="table table-striped table-hover"
-    thead 
-      tr 
-        th Type 
-        th Price 
-        th Quantity 
-        th Action
-    tbody 
-    - event.tickets.each do |ticket|
-      tr 
-        td = ticket.name 
-        td = number_to_currency(ticket.price) 
-        td = ticket.quantity
-        td = link_to "Edit", edit_ticket_path(ticket)
+  .card.mb-3
+    .row.g-0 
+      .col-md-4 
+        = image_tag event.image, class: "img-fluid rounded-start", style: "width: 100%; height: auto;"
+      .col-md-8
+        .card-body
+          .h3.card-title 
+            = event.name
+          .p.card-text
+            = event.description
+          br
+          .p.card-text class="bi bi-geo-alt-fill"
+            = event.location
+          .p.card-text class="bi bi-calendar-event"
+            = event.event_date.strftime("%d %B %Y")
+          / .p.card-text class="bi bi-people-fill"
+          /   = event.tickets.sum(:quantity)
+          / .p.card-text class="bi bi-currency-dollar"
+          /   = number_to_currency(event.tickets.sum(:price))
+          / .p.card-text class="bi bi-cash-stack"
+          /   = number_to_currency(event.tickets.sum(:price) * event.tickets.sum(:quantity))
+    - if organizer_signed_in?    
+      .container
+        table class="table table-striped table-hover"
+          thead 
+            tr 
+              th Type 
+              th Price 
+              th Quantity 
+              th Action
+          tbody 
+          - event.tickets.each do |ticket|
+            tr 
+              td = ticket.name 
+              td = number_to_currency(ticket.price) 
+              td = ticket.quantity
+              td = link_to "Edit", edit_ticket_path(ticket)
+    - else 
+      .container
+        table class="table table-striped table-hover"
+          thead 
+            tr 
+              th Type 
+              th Price 
+              th Quantity 
+              th Action
+          tbody 
+          - event.tickets.each do |ticket|
+            tr 
+              td = ticket.name 
+              td = number_to_currency(ticket.price) 
+              td = ticket.quantity
+              td purchase
+      

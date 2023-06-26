@@ -8,7 +8,7 @@
       <ul class="navbar-nav mr-auto mb-3 mb-lg-0">
         <% if organizer_signed_in? %>
           <li><%= link_to "New Events", new_event_path, class: "nav-item" %></li>
-          <li><%= link_to "My Events", events_path, class: "nav-item" %>
+          <li><%= link_to "My Events", organizers_myEvent_path, class: "nav-item" %>
         <% end %>  
       </ul>
       <ul class="navbar-nav ms-auto mb-3 mb-lg-0">
