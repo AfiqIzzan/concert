@@ -4,6 +4,7 @@
 
   .form-inputs
     = f.input :organizer_id, input_html: { value: current_organizer.id }
+    = f.file_field :poster
     = f.input :name
     = f.input :description
     = f.input :event_date

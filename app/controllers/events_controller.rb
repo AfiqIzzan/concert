@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.all.with_attached_poster
   end
 
   # GET /events/1 or /events/1.json
@@ -65,6 +65,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :description, :event_date, :category, :subcategory, :location, :organizer_id)
+      params.require(:event).permit(:poster, :name, :description, :event_date, :category, :subcategory, :location, :organizer_id)
     end
 end
