@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = current_organizer.events.build
+    @event.tickets.build
   end
 
   # GET /events/1/edit
@@ -65,6 +66,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:poster, :name, :description, :event_date, :category, :subcategory, :location, :organizer_id)
+      params.require(:event).permit(:poster, :name, :description, :event_date, :category, :subcategory, :location, :organizer_id, tickets_attributes: [:id, :name,:quantity, :price, :_destroy])
     end
 end

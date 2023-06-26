@@ -1,22 +1,31 @@
 div id="#{dom_id event}"
-  p 
-    strong Poster:
-    =< image_tag event.poster
-  p
-    strong Name:
-    =< event.name
-  p
-    strong Description:
-    =< event.description
-  p
-    strong Event date:
-    =< event.event_date
-  p
-    strong Category:
-    =< event.category
-  p
-    strong Subcategory:
-    =< event.subcategory
-  p
-    strong Location:
-    =< event.location
+
+  .h2 Event Details 
+  .row 
+    .col 
+      = image_tag event.poster
+    .col 
+      .container 
+        .h2 
+          = event.name 
+        .p 
+          = event.description 
+        .p.bi.bi-calendar-event 
+          = event.event_date.strftime("%d %B %Y")
+        .p  
+          = event.location
+
+  table class="table table-striped table-hover"
+    thead 
+      tr 
+        th Type 
+        th Price 
+        th Quantity 
+        th Action
+    tbody 
+    - event.tickets.each do |ticket|
+      tr 
+        td = ticket.name 
+        td = number_to_currency(ticket.price) 
+        td = ticket.quantity
+        td = link_to "Edit", edit_ticket_path(ticket)

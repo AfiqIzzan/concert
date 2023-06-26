@@ -1,0 +1,26 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+
+    <div class="row">
+      <div class="col">
+        <%= f.label :Ticket_Type %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.label :Price %>
+        <%= f.text_field :quantity, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.label :Quantity %>
+        <%= f.text_field :price, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.label :Action %>
+        <br>
+        <button type="button" data-action="nested-form#remove" class="btn btn-outline-danger">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+
+  <%= f.hidden_field :_destroy %>
+</div>
