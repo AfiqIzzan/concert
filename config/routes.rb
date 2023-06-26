@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :organizers
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
   root "home#index"
   draw :user
+  draw :organizer
 end
