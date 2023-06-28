@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_26_065510) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_082506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_065510) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "ticket_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_carts_on_order_id"
+    t.index ["ticket_id"], name: "index_carts_on_ticket_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -53,6 +63,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_065510) do
     t.datetime "updated_at", null: false
     t.bigint "organizer_id", null: false
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -93,6 +108,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_065510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "carts", "orders"
+  add_foreign_key "carts", "tickets"
   add_foreign_key "events", "organizers"
   add_foreign_key "tickets", "events"
 end

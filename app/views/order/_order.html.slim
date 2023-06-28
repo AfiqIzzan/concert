@@ -1,0 +1,7 @@
+= turbo_frame_tag "order" do
+    h1 Hye order
+    - if @order.carts.count > 0
+        = render "order/cart"
+        p Total: = number_to_currency(@order.total)
+    - else
+        p Your cart is empty
