@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'order', to: 'order#show'
   post 'order/add'
   post 'order/remove'
+  post 'order/add_all'
   
 
   resources :tickets
