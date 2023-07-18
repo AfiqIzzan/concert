@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'order', to: 'order#show'
-  post 'order/add'
-  post 'order/remove'
-  post 'order/add_all'
-  
 
+  get 'cart' => 'carts#show', as: :cart
+  post 'cart/add_all' => 'carts#add_all', as: :cart_add_all
+  delete 'cart/line_item/delete/:id' => 'carts#delete', as: :cart_line_item_delete
+
+  resources :orders
   resources :tickets
   resources :events
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

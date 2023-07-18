@@ -38,7 +38,7 @@ div id="#{dom_id event}"
               td = link_to "Edit", edit_ticket_path(ticket)
     - else 
       .container
-        = form_with(url: order_add_all_path, method: :post, data: { turbo_frame: 'order' }) do |f|
+        = form_with(url: cart_add_all_path, method: :post) do |f|
           table class="table table-striped table-hover"
             thead
               tr
@@ -56,3 +56,4 @@ div id="#{dom_id event}"
                     = f.number_field :tickets, value: 0, min: 0, max: ticket.quantity, name: "tickets[#{ticket.id}][quantity]" 
                     = f.hidden_field :tickets, value: ticket.id, name: "tickets[#{ticket.id}][id]" 
           = f.submit 'Buy Tickets', class: 'btn btn-primary' 
+        br

@@ -4,7 +4,7 @@
       .col
         .card.h-100
           - if event.image.attached?
-            = image_tag event.image 
+            = image_tag event.image, class: "card-img-top"
           - else
             | no image
           .card-body
@@ -17,3 +17,4 @@
           .card-footer  class="bi bi-calendar-event"
             = event.event_date.strftime("%d %B %Y")
         
+

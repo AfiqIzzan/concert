@@ -2,7 +2,7 @@ p style="color: green" = notice
 
 .container
   == render @event
-
+- if organizer_signed_in?
   div
     => link_to "Edit this event", edit_event_path(@event)
     '|
