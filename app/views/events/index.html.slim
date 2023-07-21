@@ -33,9 +33,9 @@ section#cards.cards
                 a = link_to event.name, event
               p.card-text 
               = truncate(event.description, :length =>70)
-              p.card-text class="bi bi-geo-alt-fill"
-                = event.location
-              p.card-text class="bi bi-calendar-event"
-                = event.event_date.strftime("%d %B %Y")
+              br
+              br
+              p.card-text.bi.bi-geo-alt-fill = event.location
+              p.card-text.bi.bi-calendar-event = event.event_date.strftime("%d %B %Y")
               a 
               = link_to "Explore more", event, class: "btn"
