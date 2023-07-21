@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_034732) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_21_022627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,11 +63,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_034732) do
   create_table "line_items", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "ticket_id", null: false
-    t.bigint "cart_id", null: false
+    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
     t.index ["ticket_id"], name: "index_line_items_on_ticket_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.float "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -110,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_034732) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "organizers"
   add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "orders"
   add_foreign_key "line_items", "tickets"
   add_foreign_key "tickets", "events"
 end

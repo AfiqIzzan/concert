@@ -1,0 +1,23 @@
+#order_line_items
+- @cart.line_items.each do |item|
+  | Ticket name:
+  = item.ticket.name
+  | Quantity:
+  = item.quantity
+  | Price:
+  = item.ticket.price
+  br
+
+= simple_form_for(@order) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :email
+    = f.input :phone
+    = f.input :total, input_html: { value: @cart.total }
+
+  .form-actions
+    = f.button :submit
+

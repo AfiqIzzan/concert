@@ -17,8 +17,8 @@ class CartsController < ApplicationController
             if current_line_item
                 current_line_item.quantity += ticket_quantity
             else
-                current_line_item = LineItem.new(ticket_id: ticket_id, quantity: ticket_quantity)
-                current_line_item.cart = @current_cart
+                current_line_item = @current_cart.line_items.build(ticket_id: ticket_id, quantity: ticket_quantity)
+                # current_line_item.cart = @current_cart
             end
             current_line_item.save
             Rails.logger.debug "Current Line Item: #{current_line_item.inspect}"

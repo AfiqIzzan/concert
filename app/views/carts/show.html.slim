@@ -24,5 +24,5 @@
             h6.my-0 Total Price 
           span.text-muted = number_to_currency(@cart.total)
       //checkout form
-      .btn = button_to "Confirm & Pay"
+      .btn = link_to "Confirm & Pay", new_order_path
     
