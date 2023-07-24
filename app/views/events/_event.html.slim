@@ -53,7 +53,7 @@ div id="#{dom_id event}"
                   td = number_to_currency(ticket.price)
                   td = ticket.quantity
                   td
-                    = f.number_field :tickets, value: 0, min: 0, max: ticket.quantity, name: "tickets[#{ticket.id}][quantity]" 
+                    = f.number_field :tickets, value: 0, min: 0, max: ticket.quantity, name: "tickets[#{ticket.id}][quantity]", class: 'form-control'
                     = f.hidden_field :tickets, value: ticket.id, name: "tickets[#{ticket.id}][id]" 
           = f.submit 'Buy Tickets', class: 'btn btn-primary' 
         br
