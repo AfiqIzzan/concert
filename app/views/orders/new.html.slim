@@ -1,23 +1,60 @@
-#order_line_items
-- @cart.line_items.each do |item|
-  | Ticket name:
-  = item.ticket.name
-  | Quantity:
-  = item.quantity
-  | Price:
-  = item.ticket.price
-  br
+/ #order_line_items
+/ - @cart.line_items.each do |item|
+/   | Ticket name:
+/   = item.ticket.name
+/   | Quantity:
+/   = item.quantity
+/   | Price:
+/   = number_to_currency(item.ticket.price)
+/   br
 
-= simple_form_for(@order) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+/ = simple_form_for @order, data: {turbo: false} do |f|
+/   = f.error_notification
+/   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  .form-inputs
-    = f.input :name
-    = f.input :email
-    = f.input :phone
-    = f.input :total, input_html: { value: @cart.total }
+/   .form-inputs
+/     = f.input :name
+/     = f.input :email
+/     = f.input :phone
+/     = f.input :total, input_html: { value: number_with_precision(@cart.total, :precision => 2) }
 
-  .form-actions
-    = f.button :submit
+/   .form-actions
+/     = f.button :submit , 'Make Payment', class: 'btn btn-primary'
 
+
+
+.container.mt-5
+  .row.g-5
+    .col-md-5.col-lg-4.order-md-last 
+      h4.d-flex.justify-content-between.align-items-center.mb-3
+        span.text-primary Your cart
+        span.badge.bg-primary.rounded-pill = @cart.line_items.count
+      ul.list-group.mb-3
+        - @cart.line_items.each do |item|
+          li.list-group-item.d-flex.justify-content-between.lh-sm
+            div
+              h6.my-0 = item.ticket.name
+              small.text-muted = item.quantity
+              |  pcs
+            span.text-muted = number_to_currency(item.ticket.price)
+        li.list-group-item.d-flex.justify-content-between
+          span Total (MYR)
+          strong = number_to_currency(@cart.total)
+    .col-md-7.col-lg-8
+      h4.col-md-7.col-lg-8 
+        h4 Your Details
+      .row.g-3
+        .col-12
+          #order_line_items
+          = simple_form_for @order, data: {turbo: false} do |f|
+            = f.error_notification
+            = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+            .form-inputs
+              = f.input :name
+              = f.input :email
+              = f.input :phone
+              = f.input :total, input_html: { value: number_with_precision(@cart.total, :precision => 2) }, as: :hidden
+
+            .form-actions
+              = f.button :submit , 'Make Payment', class: 'w-100 btn btn-info btn-md'

@@ -6,4 +6,5 @@ class Event < ApplicationRecord
 
     enum category: {other: 0, entertainment: 1, education: 2, sport: 3}
     enum subcategory: {Running: 0, Football: 1, Rugby: 2, Tennis: 3, Swimming: 4, Other: 5 }
+    
 end

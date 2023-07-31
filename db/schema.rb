@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_022627) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_022953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_022627) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_organizers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organizers_on_reset_password_token", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "payment_id"
+    t.integer "order_number"
+    t.string "payment_method"
+    t.string "payment_status"
+    t.string "receipt_url"
+    t.string "status_url"
+    t.string "buyer_email"
+    t.string "buyer_name"
+    t.string "buyer_phone"
+    t.decimal "transaction_amount", precision: 10, scale: 2
+    t.string "retry_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tickets", force: :cascade do |t|
