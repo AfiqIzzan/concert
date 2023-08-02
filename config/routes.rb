@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   post 'cart/add_all' => 'carts#add_all', as: :cart_add_all
   delete 'cart/line_item/delete/:id' => 'carts#delete', as: :cart_line_item_delete
   
-  # get '/search' => 'homes#search', as: :search
+  get '/search' => 'events#search', :as => 'search'
+  get '/paymentfailed' => 'orders#paymentfailed', :as => 'paymentfailed'
 
   resources :orders do 
     post :paymentredirect, on: :member

@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
     devise_scope :organizer do
         authenticated :organizer do
-            root "organizers#myEvent",  as: :authenticated_organizer_root
+            root "organizer#myEvents",  as: :authenticated_organizer_root
         end
         unauthenticated :organizer do
             root 'organizers#testOrganizer', as: :unauthenticated_organizer_root
         end
-        get 'organizers/myEvent', to: 'organizers#myEvent'
+        get 'organizer/myEvents', to: 'organizers#myEvents'
+        get 'organizer/dashboard', to: 'organizers#dashboard'
         # get 'organizers/login', to: 'organizers/sessions#new'
         # get 'organizers/signup', to: 'organizers/registrations#new'
         # get 'organizers/sign_out', to: 'sessions#destroy'

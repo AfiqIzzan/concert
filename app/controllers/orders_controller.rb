@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   # GET /orders/1 or /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @payment = Payment.find_by(order_number: @order.id)
   end
 
   # GET /orders/new
@@ -32,11 +33,11 @@ class OrdersController < ApplicationController
         buyer_email: params[:buyer_email],
         buyer_name: params[:buyer_name],
         buyer_phone: params[:buyer_phone],
-        transaction_amount: params[:total]
+        transaction_amount: params[:transaction_amount]
       }
       @payment = Payment.new(params_payment)
       @payment.save
-      redirect_to payment_path(params[:id])
+      redirect_to order_path(params[:id])
     else
       params_payment = {
         payment_id: params[:payment_id],
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
         buyer_email: params[:buyer_email],
         buyer_name: params[:buyer_name],
         buyer_phone: params[:buyer_phone],
-        payment_amount: params[:transaction_amount]
+        transaction_amount: params[:transaction_amount]
       }
       @payment = Payment.new(params_payment)
       @payment.save

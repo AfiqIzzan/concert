@@ -63,6 +63,10 @@ class PaymentsController < ApplicationController
       @payment = Payment.find(params[:id])
     end
 
+    def get_payment
+      @payment = Payment.find(params[:id])
+    end
+
     # Only allow a list of trusted parameters through.
     def payment_params
       params.fetch(:payment, {})

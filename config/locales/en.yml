@@ -35,4 +35,4 @@ en:
   number:
     currency:
       format:
-        unit: "RM"
+        unit: "RM "
