@@ -2,10 +2,10 @@ p style="color: green" = notice
 
 .container
   == render @event
-- if organizer_signed_in?
-  .container
+
+  div
     => link_to "Edit this event", edit_event_path(@event)
     '|
     =< link_to "Back to events", events_path
 
-    = button_to "Destroy this event", @event, data: { turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger"
+    = button_to "Destroy this event", @event, method: :delete

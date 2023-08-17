@@ -1,40 +1,25 @@
-<!-- Section: Design Block -->
-<section class="text-center">
-  <!-- Background image -->
-  <div class="p-5 bg-image" style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 160px;"></div>
-  <!-- Background image -->
+<div class="d-flex justify-content-center">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2 class="text-center">User Log in</h2>
+        <%= bootstrap_form_for(resource, 
+                       as: resource_name, 
+                       url: user_session_path) do |f| %>
 
-  <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: -100px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
-    <div class="card-body py-5 px-md-5">
+          <%= f.email_field :email, 
+                            autofocus: true, 
+                            class: 'form-control', 
+                            placeholder: 'email' %>
 
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-5">
-          <h2 class="fw-bold mb-5">Login now</h2>
-          <%= bootstrap_form_for(resource, 
-                        as: resource_name, 
-                        url: user_session_path) do |f| %>
+          <%= f.password_field  :password, 
+                                autocomplete: "off", 
+                                class: 'form-control',
+                                placeholder: 'password' %>
 
-            <%= f.email_field :email, 
-                              autofocus: true, 
-                              class: 'form-control', 
-                              placeholder: 'email' %>
+          <% if devise_mapping.rememberable? -%>
+            <%= f.check_box :remember_me %>
+          <% end -%>
 
-            <%= f.password_field  :password, 
-                                  autocomplete: "off", 
-                                  class: 'form-control',
-                                  placeholder: 'password' %>
-
-            <%= f.submit "Log in", class: 'form-control login-button' %>
-          <% end %>
-          <br>
-          <div class="text-center">
-            <p>Not a member? <%= link_to "Register", new_user_registration_path %></p>
-          </div>
-        </div>
-      </div>
+          <%= f.submit "Log in", class: 'form-control login-button' %>
+        <% end %>
     </div>
-  </div>
-</section>
-<!-- Section: Design Block -->
-
-
+</div>

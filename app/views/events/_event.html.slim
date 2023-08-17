@@ -1,4 +1,6 @@
 div id="#{dom_id event}"
+
+
   .card.mb-3
     .row.g-0 
       .col-md-4 
@@ -38,22 +40,18 @@ div id="#{dom_id event}"
               td = link_to "Edit", edit_ticket_path(ticket)
     - else 
       .container
-        = form_with(url: cart_add_all_path, method: :post) do |f|
-          table class="table table-striped table-hover"
-            thead
-              tr
-                th scope="col" Type
-                th scope="col" Price
-                th scope="col" Quantity Available
-                th scope="col" Qty
-            tbody
-            - @event.tickets.each do |ticket| 
-              tr
-                  td = ticket.name
-                  td = number_to_currency(ticket.price)
-                  td = ticket.quantity
-                  td
-                    = f.number_field :tickets, value: 0, min: 0, max: ticket.quantity, name: "tickets[#{ticket.id}][quantity]", class: 'form-control'
-                    = f.hidden_field :tickets, value: ticket.id, name: "tickets[#{ticket.id}][id]" 
-          = f.submit 'Buy Tickets', class: 'btn btn-primary' 
-        br
+        table class="table table-striped table-hover"
+          thead 
+            tr 
+              th Type 
+              th Price 
+              th Quantity 
+              th Action
+          tbody 
+          - event.tickets.each do |ticket|
+            tr 
+              td = ticket.name 
+              td = number_to_currency(ticket.price) 
+              td = ticket.quantity
+              td purchase
+      
