@@ -6,7 +6,7 @@ plugin "bundler"
 plugin "rails"
 plugin "puma"
 
-host "deploy@40.76.197.107"
+host "deploy@104.45.156.88"
 
 set application: "concert"
 set deploy_to: "/var/www/%{application}"
@@ -40,9 +40,9 @@ set linked_dirs: %w[
   app/assets/builds
 ]
 
-set linked_files: %w[
-  config/database.yml
-]
+# set linked_files: %w[
+#   config/database.yml
+# ]
 
 setup do
   run "env:setup"
@@ -53,9 +53,9 @@ setup do
   run "bundler:upgrade_bundler"
   run "bundler:config"
   run "bundler:install"
-  # run 'rails:db_create'
-  # run 'rails:db_schema_load'
-  # run 'rails:db_seed'
+  run 'rails:db_create'
+  run 'rails:db_schema_load'
+  run 'rails:db_seed'
   run "puma:setup_systemd"
 end
 
