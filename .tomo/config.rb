@@ -11,7 +11,7 @@ host "deploy@40.76.197.107"
 set application: "concert"
 set deploy_to: "/var/www/%{application}"
 set git_url: "git@github.com:AfiqIzzan/concert.git"
-set git_branch: "main"
+set git_branch: "backup"
 set git_exclusions: %w[
   .tomo/
   spec/
