@@ -25,8 +25,7 @@ set env_vars: {
   RAILS_LOG_TO_STDOUT: "1",
   RAILS_SERVE_STATIC_FILES: "1",
   BOOTSNAP_CACHE_DIR: "tmp/bootsnap-cache",
-  DATABASE_URL: :prompt,
-  SECRET_KEY_BASE: :prompt
+  MASTER_KEY: :prompt
 }
 set linked_dirs: %w[
   .yarn/cache
@@ -40,9 +39,9 @@ set linked_dirs: %w[
   app/assets/builds
 ]
 
-# set linked_files: %w[
-#   config/database.yml
-# ]
+set linked_files: %w[
+  config/database.yml
+]
 
 setup do
   run "env:setup"
@@ -53,9 +52,9 @@ setup do
   run "bundler:upgrade_bundler"
   run "bundler:config"
   run "bundler:install"
-  run 'rails:db_create'
-  run 'rails:db_schema_load'
-  run 'rails:db_seed'
+  # run 'rails:db_create'
+  # run 'rails:db_schema_load'
+  # run 'rails:db_seed'
   run "puma:setup_systemd"
 end
 
