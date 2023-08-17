@@ -58,6 +58,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].blank?
+      redirect_to(new_user_session_path, alert: "Empty field!") and return
+    else
+      @parameter = params[:search].downcase
+      @results = Event.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+      # @results = Ticket.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+    end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

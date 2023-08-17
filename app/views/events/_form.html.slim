@@ -10,7 +10,7 @@
       = f.input :event_date, as: :date, html5: true
       .row 
         .col 
-          = f.input :category, as: :select, collection: Event.categories.keys, :include_blank => " ", input_html: {data: {select_target: "category", action: "change->select#field"}}
+          = f.input :category, as: :select, collection: Event.categories.keys, :include_blank => "Select Category", input_html: {data: {select_target: "category", action: "change->select#field"}}
         .col class="subcategory" 
           | Subcategory
           = f.input :subcategory, as: :select, collection: Event.subcategories.keys, input_html: {data: {select_target: "sport"}, style: "margin-top:5px"}, label: false 

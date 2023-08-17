@@ -1,19 +1,30 @@
-.container style="padding-top: 20px"
-  .row.row-cols-1.row-cols-md-4.g-2
-    - @events.each do |event|
-      .col
-        .card.h-100
-          - if event.image.attached?
-            = image_tag event.image 
-          - else
-            | no image
-          .card-body
-            h4.card-title 
-              = link_to event.name, event
-            p.card-text
-              = truncate(event.description, :length =>70)
-            p.card-text class="bi bi-geo-alt-fill"
-              = event.location 
-          .card-footer  class="bi bi-calendar-event"
-            = event.event_date.strftime("%d %B %Y")
+.container.p-4
+  = form_tag(search_path, :method => "get") do
+    .row.justify-content-center
+      .col-7
+        = search_field_tag :search, params[:search], placeholder: "Event name", class: "form-control"
+      .col-1
+        = button_tag "Search", name: nil, class: "btn btn-outline-secondary ", id: "button-addon2"
         
+section#cards.cards
+  .container
+    .row 
+      - @events.each do |event|
+        .col-lg-3.col-md-6.d-flex.align-items-stretch.mb-5.mb-lg-0 
+          .card
+            img
+              - if event.image.attached?
+                = link_to (image_tag (event.image), class: "card-img-top"), event
+              - else
+                | no image
+            .card-body
+              h5.card-title
+                a = link_to event.name, event
+              p.card-text 
+              = truncate(event.description, :length =>70)
+              br
+              br
+              p.card-text.bi.bi-geo-alt-fill  =< event.location
+              p.card-text.bi.bi-calendar-event =< event.event_date.strftime("%d %B %Y")
+              a 
+              = link_to "Explore more", event, class: "btn"
