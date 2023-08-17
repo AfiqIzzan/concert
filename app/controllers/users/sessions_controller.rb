@@ -12,11 +12,6 @@ class Users::SessionsController < Devise::SessionsController
     # #     super
     # # end 
 
-    def homeUser
-        @user = current_user
-        @user = User.find(params[:id])
-    end
-
     # protected
     # def configure_sign_in_params
     #     devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
