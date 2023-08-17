@@ -40,6 +40,8 @@ gem 'simple_form'
 gem 'activestorage'
 gem 'repost'
 
+gem 'tomo', '~> 1.18'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
