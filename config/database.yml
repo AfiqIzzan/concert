@@ -18,5 +18,5 @@ test:
 production:
   <<: *default
   database: concert_production
-  username: concert
+  # username: concert
   # password: <%= ENV["CONCERT_DATABASE_PASSWORD"] %>
