@@ -41,7 +41,6 @@ set linked_dirs: %w[
 
 set linked_files: %w[
   config/database.yml
-  config/master.key
 ]
 
 setup do
@@ -65,6 +64,7 @@ deploy do
   run "core:symlink_shared"
   run "core:write_release_json"
   run "bundler:install"
+  run 'rails:db_create'
   run "rails:db_migrate"
   run "rails:assets_precompile"
   run "core:symlink_current"
