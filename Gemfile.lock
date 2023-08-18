@@ -145,8 +145,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.3)
-    psych (5.1.0)
-      stringio
+    psych (3.3.4)
     public_suffix (5.0.1)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -216,7 +215,6 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    stringio (3.0.8)
     temple (0.10.2)
     thor (1.2.2)
     tilt (2.2.0)
@@ -262,7 +260,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
-  psych (~> 5.1)
+  psych (< 4.0)
   puma (~> 5.0)
   rails (~> 7.0.5)
   redis (~> 4.0)

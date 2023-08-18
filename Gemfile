@@ -40,7 +40,7 @@ gem 'simple_form'
 gem 'activestorage'
 
 gem 'tomo', '~> 1.18'
-gem 'psych', '~> 5.1'
+gem 'psych', '< 4.0'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
