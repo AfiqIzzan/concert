@@ -25,7 +25,7 @@ set env_vars: {
   RAILS_LOG_TO_STDOUT: "1",
   RAILS_SERVE_STATIC_FILES: "1",
   BOOTSNAP_CACHE_DIR: "tmp/bootsnap-cache",
-  MASTER_KEY: :prompt
+  # MASTER_KEY: :prompt
 }
 set linked_dirs: %w[
   .yarn/cache
