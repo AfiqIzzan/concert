@@ -64,7 +64,7 @@ deploy do
   run "core:symlink_shared"
   run "core:write_release_json"
   run "bundler:install"
-  run "rails:db_migrate"
+  # run "rails:db_migrate"
   run "rails:assets_precompile"
   run "core:symlink_current"
   run "puma:restart"
