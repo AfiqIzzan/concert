@@ -6,7 +6,7 @@ plugin "bundler"
 plugin "rails"
 plugin "puma"
 
-host "deploy@104.45.156.88"
+host "deploy@172.178.57.209"
 
 set application: "concert"
 set deploy_to: "/var/www/%{application}"
@@ -64,7 +64,7 @@ deploy do
   run "core:symlink_shared"
   run "core:write_release_json"
   run "bundler:install"
-  run 'rails:db_create'
+  # run 'rails:db_create'
   run "rails:db_migrate"
   run "rails:assets_precompile"
   run "core:symlink_current"
