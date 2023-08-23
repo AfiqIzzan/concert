@@ -6,6 +6,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root "events#index"
-  draw :user
-  draw :organizer
+  # draw :user
 end
