@@ -5,32 +5,36 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto mb-3 mb-lg-0">
-        <% if organizer_signed_in? %>
-          <li><%= link_to "New Events", new_event_path, class: "nav-item" %></li>
-          <li><%= link_to "My Events", organizers_myEvent_path, class: "nav-item" %>
-        <% end %>  
-      </ul>
-      <ul class="navbar-nav ms-auto mb-3 mb-lg-0">
-        <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span id="user-name"><%= current_user.username %></span>
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item" %></li>
-              <li><%= link_to 'Log out', destroy_user_session_path, method: :delete, data: { turbo_method: :delete}, class: "dropdown-item" %></li>
-            </ul>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Events", events_path, class: "nav-link" %>
           </li>
-        <% elsif organizer_signed_in? %>
-          <li><%= link_to 'Log out', destroy_organizer_session_path, method: :delete, data: { turbo_method: :delete}, class: "nav-item" %></li>
-        <% else %>
-          <li><%= link_to 'Login as organizer', new_organizer_session_path, class: "nav-item" %></li>
-          <li><%= link_to 'Login', new_user_session_path, class:"nav-item" %></li>
-          <li><%= link_to 'Signup', new_user_registration_path, class: "nav-item" %></li>
-        <% end %>
-      </ul>
+          <li class="nav-item">
+            <%= link_to "Create Event", new_event_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Profile", user_path(current_user), class: "nav-link" %>
+          </li> 
+          <li class="nav-item">
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } , class: "nav-link" %>
+          </li>
+        </ul>
+       <% else %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
