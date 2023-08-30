@@ -1,0 +1,8 @@
+/ display all organizers
+h2 All Organizers
+- @organizers.each do |organizer|
+  p = organizer.email
+  p = organizer.status
+  p = link_to "Edit", edit_organizer_path(organizer)
+/   p = link_to "Delete", organizer_path(organizer), method: :delete, data: { confirm: "Are you sure?" }
+/ = link_to "New Organizer", new_organizer_path

@@ -1,0 +1,12 @@
+|edit organizer status
+= form_for @organizer do |f|
+    = f.label :email
+    = f.text_field :email, readonly: true
+    = f.label :phone
+    = f.text_field :phone, readonly: true
+    = f.label :description
+    = f.text_area :description, readonly: true
+    = f.label :status
+    = f.select :status, Organizer.statuses.keys.map { |status| [status.humanize, status] }
+    = f.submit 'Update'
+

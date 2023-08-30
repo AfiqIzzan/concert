@@ -1,6 +1,18 @@
-.navbar, .navbar-brand{
-    background-color: #0E2954;
+.navbar, .nav-link{
+    background-color: #0E2954;    
+    color: whitesmoke;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.nav-link:hover{
     color: white;
+    text-decoration: underline white;
+}
+
+.navbar-brand{
+    width: 5em;
+    display: block;
 }
 
 #user-name{

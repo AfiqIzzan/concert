@@ -14,8 +14,7 @@ class Users::SessionsController < Devise::SessionsController
 
     def show
         # user is current user
-        @user = current_user
-        
+        # @user = current_user
     end
 
 

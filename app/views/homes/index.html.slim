@@ -1,0 +1,9 @@
+h1 Home#index
+p Find me in app/views/home/index.html.slim
+
+/if user signed in, display their role
+-if user_signed_in?
+  p You are signed in as #{current_user.role}
+/   = link_to "Sign out", destroy_user_session_path, method: :delete
+-if organizer_signed_in?
+  p You are signed in as #{current_organizer.email}
