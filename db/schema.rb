@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_092422) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_092422) do
 
   create_table "admins", force: :cascade do |t|
     t.string "phone"
+    t.integer "status", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_092422) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "organizer_id", null: false
+    t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -103,5 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_092422) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admins", "users"
+  add_foreign_key "events", "organizers"
   add_foreign_key "tickets", "events"
 end

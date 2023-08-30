@@ -1,0 +1,16 @@
+//show details of an organizer
+
+.container
+    h1 Organizer Details
+    br
+    | Email: #{@organizer.email}
+    br
+    | Phone Number: #{@organizer.phone}
+    br
+    | Description: #{@organizer.description}
+    br
+    | Status: #{@organizer.status}
+    br
+    = link_to 'Edit', edit_organizer_path(@organizer)
+    br
+    = link_to 'Back', organizers_path

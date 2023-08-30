@@ -1,0 +1,24 @@
+// show all organizers
+
+.container
+    h1 Organizers
+    table.table.table-hover
+        thead
+            tr
+            th Email
+            th Phone Number
+            th Description
+            th Status
+            th colspan="2" Action
+        tbody
+            - @organizers.each do |organizer|
+                tr
+                td = organizer.email
+                td = organizer.phone
+                td = organizer.description
+                td = organizer.status
+                td = link_to 'Show', organizer_path(organizer)
+                td = link_to 'Edit', edit_organizer_path(organizer)
+                / td = link_to 'Destroy', organizer, method: :delete, data: { confirm: 'Are you sure?' }
+/
+/

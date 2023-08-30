@@ -12,9 +12,9 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    # @event = current_user.events.build
-    # @event.tickets.build
-    @event = Event.new
+    @event = current_organizer.events.build
+    @event.tickets.build
+    # @event = Event.new
   end
 
   # GET /events/1/edit

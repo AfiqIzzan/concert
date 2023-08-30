@@ -1,0 +1,12 @@
+// show admin details
+| Name: #{@user.name}
+br
+| Email: #{@user.email}
+br
+| Phone Number: #{@admin.phone}
+br
+= link_to 'Edit', edit_admin_path(@user)
+br
+= link_to 'Back', admins_path
+
+

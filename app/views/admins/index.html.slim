@@ -1,8 +1,24 @@
-/ display all organizers
-h2 All Organizers
-- @organizers.each do |organizer|
-  p = organizer.email
-  p = organizer.status
-  p = link_to "Edit", edit_organizer_path(organizer)
-/   p = link_to "Delete", organizer_path(organizer), method: :delete, data: { confirm: "Are you sure?" }
-/ = link_to "New Organizer", new_organizer_path
+//display all users that are admins
+
+.container
+  h1 Admins
+  table.table.table-hover
+    thead
+      tr
+        th Name
+        th Email 
+        th Phone Number
+        th colspan="2" Action
+    tbody
+      - @users.each do |user|
+        - @admins.each do |admin|
+          tr
+            td = user.name
+            td = user.email
+            td = admin.phone
+            td = link_to 'Show', admin_path(user)
+            td = link_to 'Edit', edit_admin_path(user)
+            / td = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+

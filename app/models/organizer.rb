@@ -4,5 +4,7 @@ class Organizer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         enum status: [:pending, :rejected, :active]
+        enum status: [:pending, :rejected, :active]
+
+        has_many :events
 end

@@ -1,5 +1,9 @@
 class OrganizersController < ApplicationController
 
+    def index
+        @organizers = Organizer.all
+    end
+    
     def edit
         @organizer = Organizer.find(params[:id])
     end
@@ -13,6 +17,10 @@ class OrganizersController < ApplicationController
         else
             render :edit, status: :unprocessable_entity
         end
+    end
+
+    def show
+        @organizer = Organizer.find(params[:id])
     end
 
     private 
