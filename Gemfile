@@ -38,6 +38,7 @@ gem 'devise'
 gem 'bootstrap_form'
 gem 'simple_form'
 gem 'activestorage'
+gem 'repost'
 
 gem 'tomo', '~> 1.18'
 gem 'psych', '< 4.0'

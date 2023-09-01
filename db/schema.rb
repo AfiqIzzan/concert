@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_094049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -62,6 +67,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
     t.datetime "updated_at", null: false
     t.bigint "organizer_id", null: false
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "ticket_id", null: false
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["ticket_id"], name: "index_line_items_on_ticket_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.float "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -77,6 +103,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_organizers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organizers_on_reset_password_token", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "payment_id"
+    t.integer "order_number"
+    t.string "payment_method"
+    t.string "payment_status"
+    t.string "receipt_url"
+    t.string "status_url"
+    t.string "buyer_email"
+    t.string "buyer_name"
+    t.string "buyer_phone"
+    t.float "transaction_amount"
+    t.string "retry_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -107,5 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_080220) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admins", "users"
   add_foreign_key "events", "organizers"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "tickets"
   add_foreign_key "tickets", "events"
 end

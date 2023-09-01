@@ -1,0 +1,34 @@
+div id="#{dom_id payment}"
+- if payment.payment_status == "true"
+  p
+    strong Payment:
+    =< payment.payment_id
+  p
+    strong Order no:
+    =< payment.order_number
+  p
+    strong Payment method:
+    =< payment.payment_method
+  p
+    strong Payment status:
+    =< payment.payment_status
+  p
+    strong Receipt url:
+    =< payment.receipt_url
+  p
+    strong Status url:
+    =< payment.status_url
+  p
+    strong Buyer email:
+    =< payment.buyer_email
+  p
+    strong Buyer name:
+    =< payment.buyer_name
+  p
+    strong Buyer phone:
+    =< payment.buyer_phone
+  p
+    strong Payment amount:
+    =< payment.transaction_amount
+- else
+  = render partial: "failpayment", locals: { payment: payment }
