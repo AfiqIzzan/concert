@@ -10,6 +10,11 @@ class EventsController < ApplicationController
   def show
   end
 
+  def myevents
+    @events = current_organizer.events
+  end
+  
+
   # GET /events/new
   def new
     @event = current_organizer.events.build

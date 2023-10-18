@@ -9,3 +9,9 @@ application.register("hello", HelloController)
 
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
+
+import DatatableController from "./datatable_controller"
+application.register("datatable", DatatableController)
+
+import CalendarController from "./calendar_controller"
+application.register("calendar", CalendarController)

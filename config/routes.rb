@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :admins
   resources :tickets
   resources :events
-
+  get 'myevents' => 'events#myevents', as: :myevents
   get 'cart' => 'carts#show', as: :cart
   post 'cart/add_all' => 'carts#add_all', as: :cart_add_all
   delete 'cart/line_item/delete/:id' => 'carts#delete', as: :cart_line_item_delete
@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root "homes#index"
+  root "events#index"
   # draw :user
 end

@@ -1,9 +1,7 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.container-fluid 
+  .row.flex-nowrap 
+    .col-auto.col-md-3.col-xl-2.px-sm-2.px-0.bg-light
+      .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.min-vh-100
 
-/if user signed in, display their role
--if user_signed_in?
-  p You are signed in as #{current_user.role}
-/   = link_to "Sign out", destroy_user_session_path, method: :delete
--if organizer_signed_in?
-  p You are signed in as #{current_organizer.email}
+    .col.py-3.content
+        = render 'events/index'

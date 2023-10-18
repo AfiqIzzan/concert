@@ -1,0 +1,84 @@
+nav.navbar.navbar-expand-lg
+  .container-fluid 
+    = link_to image_tag("/pics/logo.png", width:'100%' ), root_path, class: "navbar-brand"
+    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        = link_to "Events", events_path, class: "nav-link"
+      // admin, superadmin, member
+      - if user_signed_in?
+        //admin
+        - if current_user.admin?
+          ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+            li.nav-item.dropdown 
+              a.nav-link.dropdown-toggle type="button"  data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"
+                = current_user.name
+              ul.dropdown-menu.dropdown-menu-end
+                li = link_to "All Organizers", organizers_path, class: "dropdown-item"
+                li = link_to "Edit Account", edit_admin_path(current_user), class: "dropdown-item"
+                li
+                  hr.dropdown-divider
+                li = link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } , class: "dropdown-item"
+        //member
+        - elsif current_user.member?
+          ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+            li.nav-item.dropdown 
+              a.nav-link.dropdown-toggle type="button"  data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"
+                = current_user.name
+              ul.dropdown-menu.dropdown-menu-end
+                li = link_to "Edit Account", edit_user_registration_path, class: "dropdown-item"
+                li
+                  hr.dropdown-divider
+                li = link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } , class: "dropdown-item"
+        //superadmin        
+        - elsif current_user.superadmin?
+          ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+            li.nav-item.dropdown 
+              a.nav-link.dropdown-toggle type="button"  data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"
+                = current_user.name
+              ul.dropdown-menu.dropdown-menu-end
+                li = link_to "All Admins", admins_path, class: "dropdown-item"
+                li = link_to "Add Admin", new_user_registration_path, class: "dropdown-item"
+                li
+                  hr.dropdown-divider
+                li = link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete } , class: "dropdown-item"
+        //no role
+        - else
+          ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+            li.nav-item 
+              = link_to "Login", new_user_session_path, class: "nav-link"
+            li.nav-item 
+              = link_to "Sign Up", new_user_registration_path, class: "nav-link"
+            li.nav-item 
+              = link_to "Be an organizer", new_organizer_registration_path, class: "nav-link"
+      //organizer        
+      - elsif organizer_signed_in?
+        ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+          li.nav-item.dropdown 
+            a.nav-link.dropdown-toggle type="button"  data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false"
+              = current_organizer.email
+            ul.dropdown-menu.dropdown-menu-end
+              li = link_to "Create Event", new_event_path, class: "dropdown-item"
+              li = link_to "My Event", myevents_path, class: "dropdown-item"
+              li
+                hr.dropdown-divider
+              li = link_to "Sign Out", destroy_organizer_session_path, data: { "turbo-method": :delete } , class: "dropdown-item"
+      //default
+      - else
+        ul.navbar-nav.ms-auto.mb-2.mb-lg-0 
+          li.nav-item 
+            = link_to "Login", new_user_session_path, class: "nav-link"
+          li.nav-item 
+            = link_to "Sign Up", new_user_registration_path, class: "nav-link"
+          li.nav-item 
+            = link_to "Be an organizer", new_organizer_registration_path, class: "nav-link"
+            
+
+
+
+
+
+
+
+

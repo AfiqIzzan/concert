@@ -1,13 +1,16 @@
-/ form to edit an admin
-= simple_form_for(@admin) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+.container.px-25
+  / form to edit an admin
+  = simple_form_for(@admin) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    br
+    .form-inputs
+      = f.input :email, input_html: { value: @admin.user.email }, readonly: true
+      = f.input :phone, hint: 'Enter phone number without country code'
 
-  .form-inputs
-    / = f.input :email, required: true, input_html: { value: @admin.user.email }, readonly: true
-    = f.input :phone
+    .form-actions
+      = f.button :submit
 
-  .form-actions
-    = f.button :submit
+    = link_to 'Cancel', admins_path, class: 'btn btn-sm btn-outline-dark'
 
-  = link_to 'Cancel', admins_path
+    

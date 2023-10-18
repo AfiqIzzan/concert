@@ -2,3 +2,40 @@
     background-color: rgba(255, 255, 255, 0.25);
     border-radius: 1rem;
 }
+
+p.card-text{
+    font-size: 14px;
+    text-align: justify;
+}
+
+.ic{
+    //hidden
+    display: none;
+}
+
+.card-body{
+    text-align: justify;
+}
+
+.table-bordered.card {
+	border: 0 !important;
+}
+.card thead {
+	display: none;
+}
+
+.card tbody tr {
+	float: left;
+	width: 6.7cm;
+	margin: 0.2cm;
+	border: 1px solid #bfbfbf;
+	border-radius: 0.5em;
+	background-color: transparent !important;
+	box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+.card tbody tr td {
+	display: block;
+	border: 0;
+    font-size: 14px;
+    text-align: justify;
+}
