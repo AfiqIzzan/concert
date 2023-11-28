@@ -1,11 +1,10 @@
 div id="#{dom_id event}"
-
-
-  .card.mb-3
+  .box
     .row.g-0 
       .col-md-4 
         = image_tag event.image, class: "img-fluid rounded-start", style: "width: 100%; height: auto;"
-      .col-md-8
+      br
+      .col-md-8.d-flex.align-items-center#event-info
         .card-body
           .h3.card-title 
             = event.name
@@ -24,24 +23,29 @@ div id="#{dom_id event}"
               th Type 
               th Price 
               th Quantity 
-              th Action
+              th colspan="2" 
           tbody 
           - event.tickets.each do |ticket|
             tr 
               td = ticket.name 
               td = number_to_currency(ticket.price) 
               td = ticket.quantity
-              td = link_to "Edit", edit_ticket_path(ticket)
+              td = link_to edit_ticket_path(ticket) do 
+                i.bi.bi-pencil-square
+              td = link_to ticket_path(ticket), data: {turbo_method: :delete, confirm: "Are you sure?"}, class: "btn btn-sm" do
+                i.bi.bi-trash.text-danger
+
+
     - else 
       .container
         = form_with(url: cart_add_all_path, method: :post) do |f|
           table class="table table-striped table-hover"
             thead
               tr
-                th scope="col" Type
-                th scope="col" Price
-                th scope="col" Quantity Available
-                th scope="col" Qty
+                th Type
+                th Price
+                th Quantity Available
+                th Qty
             tbody
             - @event.tickets.each do |ticket| 
               tr

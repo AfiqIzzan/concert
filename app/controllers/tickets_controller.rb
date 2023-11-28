@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @ticket.event_id = params[:event_id]
   end
 
   # GET /tickets/1/edit

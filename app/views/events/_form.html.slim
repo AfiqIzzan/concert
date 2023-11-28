@@ -1,6 +1,13 @@
 = simple_form_for @event, data:{controller: "nested-form calculate select", nested_form_target: "nested-form.form", nested_form_wrapper_selector_value: ".nested-form-wrapper"} do |f|
   = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  / = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  - if @event.errors.any?
+    .alert.alert-danger
+      h4 Alert!
+      ul
+        - @event.errors.full_messages.each do |msg|
+          li = msg
+
 
   .form-inputs
     .form-control
@@ -19,6 +26,10 @@
       =f.input :organizer_id , as: :hidden, input_html: {value: current_organizer.id}
 
       <h4>Tickets</h4>
+      = f.fields_for :tickets do |ticket_fields|
+        = render "events/event_ticket_form", f: ticket_fields
+      / = link_to_add_association 'Add ticket', f, :tickets, partial: "events/event_ticket_form", class: "btn btn-outline-primary btn-sm"
+      / = f.link_to_add "Add ticket", :tickets, partial: "events/event_ticket_form", class: "btn btn-outline-primary btn-sm"
 
       template data-nested-form-target="template"
         = f.fields_for :tickets, Ticket.new, child_index: 'NEW_RECORD' do |ticket_fields| 

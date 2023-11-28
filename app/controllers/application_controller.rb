@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :initialize_cart
+    include Pagy::Backend
     
     private 
     def initialize_cart

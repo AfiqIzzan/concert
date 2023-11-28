@@ -2,56 +2,31 @@
   .row.flex-nowrap 
     .col-auto.col-md-3.col-xl-2.px-sm-2.px-0.bg-light
       .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.min-vh-100
+        = render 'homes/base'
 
     .col.py-3
       .container
-        table#dttb.table data-controller="datatable" style="width:100%"
-          thead 
-            tr 
-              th.ic Image
-              th Name
-              th Description
-              th Location
-              th Event Date
-          tbody
-            - @events.each do |event|
-              tr 
-                td.ic 
-                  - if event.image.attached?
-                    = image_tag event.image, class: "card-img-top"
-                  - else
-                    | no image
-                td = event.name
-                td = truncate(event.description, :length =>70)
-                td = event.location
-                td = event.event_date.strftime("%d %B %Y")
-           
-          
-
-
-
-/ Compare this snippet from app/views/events/index.html.slim: 
-          .row.row-cols-1.row-cols-md-4.g-2
-            - @events.each do |event|
-              .col
-                .card.h-100
-                  - if event.image.attached?
-                    = image_tag event.image, class: "card-img-top" 
-                  - else
-                    | no image
-                  .card-body
-                    h5.card-title 
-                      = link_to event.name, event
-                    p.card-text
-                      = truncate(event.description, :length =>70)
-                    p.card-text.bi.bi-geo-alt-fill
-                      |    
-                      = event.location 
-                  .card-footer.bi.bi-calendar-event
-                    small.text-muted
-                      |    
-                      = event.event_date.strftime("%d %B %Y")
-
+        .row.row-cols-1.row-cols-md-4.g-2
+          - @events.each do |event|
+            .col
+              .card.h-100
+                - if event.image.attached?
+                  = image_tag event.image, class: "card-img-top" 
+                - else
+                  | no image
+                .card-body
+                  h5.card-title 
+                    = link_to event.name, event
+                  p.card-text
+                    = truncate(event.description, :length =>70)
+                  p.card-text.bi.bi-geo-alt-fill
+                    |    
+                    = event.location 
+                .card-footer.bi.bi-calendar-event
+                  small.text-muted
+                    |    
+                    = event.event_date.strftime("%d %B %Y")
+      == pagy_nav(@pagy)
 
       / 
 

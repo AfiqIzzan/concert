@@ -13,8 +13,8 @@ export default class extends Controller {
       $('#dttb').DataTable({
         dom: 'Bfrtip',
         language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search..."
+          search: "",
+          searchPlaceholder: "Search Event"
         },
         //add custom button
         initComplete: function () {
@@ -23,7 +23,7 @@ export default class extends Controller {
           $('#btn-card').on("click", function () {
             if ($("#dttb").hasClass("card")) {
                     $(".colHeader").remove();
-                    $(".ic").remove();                    
+                    // $(".ic").remove();                    
             } 
             else {
                   var labels = [];
@@ -39,6 +39,26 @@ export default class extends Controller {
                   });
             }
           $('#dttb').toggleClass('card');
+          });
+          $('#btn-card2').on("click", function () {
+            if ($("#dttb").hasClass("card2")) {
+                    $(".colHeader").remove();
+                    // $(".ic").remove();                    
+            } 
+            else {
+                  var labels = [];
+                  $("#dttb thead th").each(function () {
+                    labels.push($(this).text());
+                  });
+                  $("#dttb tbody tr").each(function () {
+                    $(this).find("td").each(function (column) {
+                      $(labels[column]).prependTo(
+                        $(this)
+                      );
+                    });
+                  });
+            }
+          $('#dttb').toggleClass('card2');
           });
         }
       });

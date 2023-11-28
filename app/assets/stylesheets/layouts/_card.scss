@@ -39,3 +39,15 @@ p.card-text{
     font-size: 14px;
     text-align: justify;
 }
+.pagination{
+	float: inline-end;
+	padding-top: 10px;
+}
+.page{
+	padding: 2px 5px;
+	border-radius: 4px;
+}
+.page.active{
+	background-color: #007bff;
+	color: white;
+}

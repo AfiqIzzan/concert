@@ -3,8 +3,6 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  
-  
   }
 
   a, a:link{
@@ -18,4 +16,17 @@ body{
     height: 6cm;
     object-fit: contain;
     background-image: radial-gradient(circle, rgb(255, 255, 255) 40%, #c5cbd1c7 90%);
-}
+  }
+
+  .box{
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  #event-info{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
